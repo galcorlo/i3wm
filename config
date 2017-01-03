@@ -1,0 +1,348 @@
+# i3 config file (v4)
+#
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+#
+# This config file uses keycodes (bindsym) and was written for the QWERTY
+# layout.
+#
+# To get a config file with the same key positions, but for your current
+# layout, use the i3-config-wizard
+#
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+#font pango:monospace 12
+font pango:System San Francisco Display 12
+
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+#font pango:DejaVu Sans Mono 8
+
+# Before i3 v4.8, we used to recommend this one as the default:
+# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# The font above is very space-efficient, that is, it looks good, sharp and
+# clear in small sizes. However, its unicode glyph coverage is limited, the old
+# X core fonts rendering does not support right-to-left and this being a bitmap
+# font, it doesn’t scale on retina/hidpi displays.
+
+# use these keys for focus, movement, and resize directions when reaching for
+# the arrows is not convenient
+set $up l
+set $down k
+set $left j
+set $right semicolon
+
+# use Mouse+$mod to drag floating windows to their wanted position
+set $mod Mod4
+
+set $laptopMonitor eDP1
+set $externalMonitor1 DP1
+set $externalMonitor2 DP2
+
+set $base00 #101218
+set $base01 #1f222d
+set $base02 #252936
+set $base03 #7780a1
+set $base04 #C0C5CE
+set $base05 #d1d4e0
+set $base06 #C9CCDB
+set $white  #ffffff
+set $base08 #ee829f
+set $base09 #f99170
+set $base0A #ffefcc
+set $base0B #a5ffe1
+set $base0C #97e0ff
+set $base0D #97bbf7
+set $base0E #c0b7f9
+set $base0F #fcc09e
+
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec i3-sensible-terminal
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start dmenu (a program launcher)
+bindsym $mod+d exec rofi -show run -lines 5 -eh 2 -width 100 -padding 200 -opacity "80" -bw 0 -bc "$base01" -bg "$base02" -fg "$white" -hlbg "$base05" -columns 1 -font "System San Francisco Display 18" -hlfg "#9575cd"
+#bindsym $mod+d exec dmenu_run
+# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+# change focus
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+minus scratchpad show
+
+
+set $workspace1 "1: "
+set $workspace2 "2: "
+set $workspace3 "3: "
+set $workspace4 "4: "
+set $workspace5 "5: "
+set $workspace6 "6: "
+set $workspace7 "7: "
+set $workspace8 "8: "
+set $workspace9 "9: "
+set $workspace10 "10: "
+
+# switch to workspace
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $workspace1  ; workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2  ; workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3  ; workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4  ; workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5  ; workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6  ; workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7  ; workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8  ; workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9  ; workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace10 ; workspace $workspace10
+
+workspace $workspace1 output $externalMonitor1
+workspace $workspace2 output $externalMonitor1
+workspace $workspace3 output $externalMonitor1
+workspace $workspace4 output $externalMonitor1
+workspace $workspace5 output $externalMonitor1
+workspace $workspace6 output $externalMonitor1
+workspace $workspace7 output $externalMonitor1
+workspace $workspace8 output $externalMonitor1
+workspace $workspace9 output $externalMonitor2
+workspace $workspace10 output $laptopMonitor
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+#bindsym $mod+Shift+e exec ~/.i3/exit.sh
+bindsym $mod+Shift+e exec ~/.i3/i3blocks/blocklets/shutdown_menu.sh
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym $left       resize shrink width 10 px or 10 ppt
+        bindsym $down       resize grow height 10 px or 10 ppt
+        bindsym $up         resize shrink height 10 px or 10 ppt
+        bindsym $right      resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Right       resize shrink width 10 px or 10 ppt
+        bindsym Up          resize grow height 10 px or 10 ppt
+        bindsym Down        resize shrink height 10 px or 10 ppt
+        bindsym Left        resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+
+# Widow Colours
+#                         border  background text    indicator
+#  client.focused          $base01 $base01    $white $base0F
+#  client.focused_inactive $base02 $base02    $base03 $base0F
+#  client.unfocused        $base02 $base02    $base03 $base0F
+#  client.urgent           $base02 $base08    $base00 $base0F
+
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+        status_command i3blocks -c ~/.i3/i3blocks.conf
+        tray_padding 4 px
+        #status_command i3status
+        tray_output primary
+        font pango: System San Francisco Display, FontAwesome 12
+        position bottom
+
+        # elimina el numero del workspace
+        #strip_workspace_numbers yes
+        #bindsym button4 nop
+        #bindsym button5 nop
+        colors {
+              separator $base03
+              background $base01
+              statusline $base05
+        #                        border  background text
+              focused_workspace  $white  $base01    $white
+              active_workspace   $base01 $base02    $white
+              inactive_workspace $base01 $base01    $base03
+              urgent_workspace   $base01 $base01    $base08
+    }
+#	status_command python /usr/share/powerline/bindings/i3/powerline-i3.py
+}
+
+
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle && pkill -RTMIN+12 i3blocks # mute sound
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% && pkill -RTMIN+12 i3blocks #increase sound volume
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5% && pkill -RTMIN+12 i3blocks #decrease sound volume
+
+#bindsym XF86AudioMicMute exec /usr/bin/pactl set-source-mute 1 toggle && pkill -RTMIN+7 #mute micro
+
+# Screen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10 && pkill -RTMIN+13 i3blocks # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10 && pkill -RTMIN+13 i3blocks # decrease screen brightness
+
+# Touchpad controls
+bindsym XF86TouchpadToggle exec ~/.i3/toggletouchpad.sh # toggle touchpad
+
+# Screen capture
+bindsym --release Print exec scrot -s $HOME/Pictures/screenshots/screen`date +%Y%m%d_%H%M%S`.png
+
+
+
+# Stick som apps to some workspaces
+#assign [class="Firefox"] $workspace1
+#assign [class="chromium-browser"] $workspace1
+#assign [class="Gedit"] $workspace3
+#assign [class="HipChat"] $workspace5
+#assign [class="Keepassx"] $workspace9
+#assign [class="x-terminal-emulator"] $workspace2
+#assign [class="Gnome-terminal"] $workspace2
+
+
+# Fix Nautilius issue on Ubuntu
+exec_always gsettings set org.gnome.desktop.background show-desktop-icons false
+exec_always gsettings set org.nemo.desktop show-desktop-icons false
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+# Startup programs
+exec_always --no-startup-id nm-applet
+exec_always --no-startup-id ssh-add
+#exec_always --no-startup-id feh --bg-scale ~/.i3/edubuntu-stargazer-full.png
+exec_always --no-startup-id feh --bg-scale ~/.i3/dark-pattern.jpg
+#exec_always --no-startup-id solaar
+
+#exec_always compton -f
+
+#bindsym $mod+Shift+x exec i3lock --color "#999999"
+bindsym $mod+Shift+x exec ~/.i3/i3lock.sh
+
+
+# To show capital lock status
+bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
+bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
+
+# Permet commutar entre l'escriptori actual i l'anterior
+bindsym $mod+z workspace back_and_forth
+
+# Menu per triar la sortida de pantalla
+bindsym XF86Display exec ~/.i3/swapp-monitor.sh
+
+# Lock screen automatically
+exec_always --no-startup-id xautolock -detectsleep -noclose -time 10 -locker ~/.i3/i3lock.sh -notify 5 -notifier "notify-send -u critical -t 10000 -- '30 seconds i bloquejo la pantalla'"
+
+# Install gsimplecal and add this line to hide the calendar when the calendar doesn't have focus
+#echo "close_on_unfocus = 1" > ~/.config/gsimplecal/config
+
+
+#bindsym Control+Mod1+Delete exec ~/.i3/i3blocks/blocklets/shutdown_menu.sh
+#exec --no-startup-id gnome-sound-applet
+#exec --no-startup-id nm-applet
+#bindsym $mod+Shift+o exec "gnome-screensaver-command --lock "
+
+# Si el ratoli surt de la finestra fer que no perdem el focus
+focus_follows_mouse no
+
+
+# move the whole workspace to the next output
+# pots concatenar comandes amb ; i podria servir per moure tots els workspaces a la pantalla de l'ordinador quan trec les sortides
+bindsym $mod+m move workspace to output right
+
+# Mod+tab per canviar d'escriptori
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
+# Automonta els USB
+exec --no-startup-id "devmon --no-gui"
+
+
+# Si vols tornar a l'escriptori d'on vens fas windows i l'escriptori on ets i et porta on eres abans
+workspace_auto_back_and_forth yes
+
+
+# print all window titles bold
+for_window [class=".*"] title_format "<b>%title</b>"
+
+
+# Install also powerline and Vim Airline
