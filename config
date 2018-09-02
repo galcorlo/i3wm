@@ -100,7 +100,8 @@ bindsym $mod+Shift+Right move right
 bindsym $mod+Shift+v split h
 
 # split in vertical orientation
-bindsym $mod+v split v
+bindsym $mod+v split t
+#bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -120,7 +121,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+Shift+a focus child
 
 # move the currently focused window to the scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -215,10 +216,17 @@ new_window pixel 5
 # Widow Colours
 #                         border  background text    indicator
 #client.focused          $base01 $base01    $white $base0F
+#client.focused          #ffffff #0000ff #0000ff  #0000ff
 #  client.focused_inactive $base02 $base02    $base03 $base0F
 #  client.unfocused        $base02 $base02    $base03 $base0F
 #  client.urgent           $base02 $base08    $base00 $base0F
 
+#class                  border  backgr. text    indicator child_border
+client.focused          #4c7899 #285577 #ffffff #ffffff   #0000ff
+client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -244,7 +252,6 @@ bar {
               inactive_workspace $base01 $base01    $base03
               urgent_workspace   $base01 $base01    $base08
     }
-#	status_command python /usr/share/powerline/bindings/i3/powerline-i3.py
 }
 
 
@@ -262,7 +269,8 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10 && pkill -RTMIN+13 i3block
 bindsym XF86TouchpadToggle exec ~/.i3/toggletouchpad.sh # toggle touchpad
 
 # Screen capture
-bindsym --release Print exec scrot -s $HOME/Pictures/screenshots/screen`date +%Y%m%d_%H%M%S`.png
+bindsym Print --release exec "scrot --select $HOME/Pictures/screenshots/screen`date +%Y%m%d_%H%M%S`.png --exec 'xclip -selection clipboard -target image/png -in $f' ; notify-send --icon camera-photo --expire-time 1000 'Captura de regió realitzada' 'També copiat al portaretalls'"
+bindsym Shift+Print exec "scrot $HOME/Pictures/screenshots/screen`date +%Y%m%d_%H%M%S`_full.png --exec 'xclip -selection clipboard -target image/png -in $f'; notify-send --icon camera-photo --expire-time 1000 'Captura de pantalla realitzada' 'També copiat al portaretalls'"
 
 
 
@@ -305,6 +313,10 @@ bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
 
 # Permet commutar entre l'escriptori actual i l'anterior
 bindsym $mod+z workspace back_and_forth
+
+# Display passowrds menu
+#bindsym $mod+p exec 'gopass ls --flat | rofi -dmenu -i -p "gopass: "| xargs --no-run-if-empty gopass show -c'
+bindsym $mod+p exec ~/.i3/passwords.sh
 
 # Menu per triar la sortida de pantalla
 bindsym XF86Display exec ~/.i3/swapp-monitor.sh
