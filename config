@@ -322,7 +322,7 @@ bindsym $mod+p exec ~/.i3/passwords.sh
 bindsym XF86Display exec ~/.i3/swapp-monitor.sh
 
 # Lock screen automatically
-exec_always --no-startup-id xautolock -detectsleep -noclose -time 10 -locker ~/.i3/i3lock.sh -notify 5 -notifier "notify-send -u critical -t 10000 -- '30 seconds i bloquejo la pantalla'"
+exec_always --no-startup-id xautolock -detectsleep -noclose -time 10 -locker ~/.i3/i3lock.sh -notify 5 -notifier "notify-send -u critical -i gnome-lockscreen -t 10000 -- '30 seconds i bloquejo la pantalla'"
 
 # Install gsimplecal and add this line to hide the calendar when the calendar doesn't have focus
 #echo "close_on_unfocus = 1" > ~/.config/gsimplecal/config
